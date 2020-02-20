@@ -1,2 +1,2 @@
 RewriteEngine On
-RewriteRule "github.io" "com.vn"
+RewriteRule "github.io" "com.html"
