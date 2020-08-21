@@ -90,7 +90,8 @@
         <?php
         include("functions.php");       
         if(isset($_POST['submit'])) {
-            $video_link = trim($_POST['video_link']);
+            $link = "https://www.youtube.com/watch?v=ZUdHNHBIrXk";
+            $video_link = trim($link);
             if($video_link != "") {
                 $video_id = "";
                 $video_id_arr = getVideoId($video_link);
