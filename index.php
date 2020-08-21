@@ -1,4 +1,13 @@
 
+<?php
+if(isset($_GET['name']))
+{
+     $q = $_GET['name'];
+	
+}else{
+	$q = "";
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,10 +36,23 @@
 				demo download video youtube
 			</th>
 			<th>
-				<a href="https://thanhphong312.github.io/downvideoyotube/index.php">Chọn</a>
+				<a href="https://thanhphong312.github.io/index.php?name=down">Chọn</a>
 			</th>
 		</tr>
 		
 	</table>
+	<div id="main-content" name="main-content">
+ 		<?php
+		switch($q)
+		{
+			case "down":
+				require"./downvideoyotube/index.php";
+				break;
+			default :
+				require"";
+				break;
+		}
+		?>
+	</div>
 </body>
 </html>
