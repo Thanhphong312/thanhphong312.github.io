@@ -1,12 +1,12 @@
 
 <?php
-if(isset($_GET['name']))
-{
-     $q = $_GET['name'];
+// if(isset($_GET['name']))
+// {
+//      $q = $_GET['name'];
 	
-}else{
-	$q = "";
-}
+// }else{
+// 	$q = "";
+// }
 ?>
 <!DOCTYPE html>
 <html>
@@ -43,15 +43,9 @@ if(isset($_GET['name']))
 	</table>
 	<div id="main-content" name="main-content">
  		<?php
-		switch($q)
-		{
-			case "down":
+		
 				require"./downvideoyotube/index.php";
-				break;
-			default :
-				require"";
-				break;
-		}
+		
 		?>
 	</div>
 </body>
