@@ -105,9 +105,7 @@
                 );  
                     parse_str(file_get_contents("https://youtube.com/get_video_info?video_id=".$video_id, false, stream_context_create($arrContextOptions)),$info);
                     $statu = json_decode($info['player_response'],true);
-                         echo "<pre>";
-                        print_r($statu['streamingData']);
-                        echo "</pre>";
+                       
                     if(!empty($info) && $info['status'] == 'ok'&&isset($statu['streamingData'])) {
 
                         $streams = $statu['streamingData']['formats'];
@@ -153,9 +151,7 @@
                                             <td><a href="download.php?url=<?php echo base64_encode($stream['url']);?>&title=<?php echo $video_title; ?>&mime=<?php echo $video_type[0]; ?>&ext=<?php echo $ext; ?>&size=<?php echo $size_in_bytes; ?>" target="_blank">Download</a>
                                             </td>
                                         </tr>
-                                    <?php                                    
-                                        // setcookie("submit", "", time());
-                                    } 
+                                    <?php                                                                        } 
                                     ?>
                                 </table>
                             </div>
