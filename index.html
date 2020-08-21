@@ -98,11 +98,7 @@
                 if(sizeof($video_id_arr) == 3) $video_id = $video_id_arr[2];
                 if($video_id != "") 
                 {
-                    $arrContextOptions = array(
-                    "ssl" => array(
-                        "verify_peer"=>false,
-                        "verify_peer_name"=>false,
-                    );
+                    
                 ); 
                     parse_str(file_get_contents("https://youtube.com/get_video_info?video_id=".$video_id, false, stream_context_create($arrContextOptions)),$info);
                     $statu = json_decode($info['player_response'],true);
