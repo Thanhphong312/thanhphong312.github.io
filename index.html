@@ -86,7 +86,7 @@
                 </div>            
             </div><!-- .row -->
         </form>
-        <?
+        <?php
         include("functions.php");       
         if(isset($_POST['submit'])) 
         {
@@ -161,7 +161,8 @@
                     <?php
                     } else {
                         echo "<h4 class='error'>video không hổ trợ download, vui lòng  chọn link khác!</h4>";
-                    }
+                    }?>
+        <?php
                 } else {
                     echo "<h4 class='error'>Invalid video link!</h4>";
                 }
