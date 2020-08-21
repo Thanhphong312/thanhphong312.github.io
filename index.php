@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
@@ -88,20 +89,24 @@
         </form>
         <?php
         include("functions.php");       
-        if(isset($_POST['submit'])) 
-        {
+        if(isset($_POST['submit'])) {
             $video_link = trim($_POST['video_link']);
-            if($video_link != "") 
-            {
-                $video_id = "";
+            if($video_link != "") {
+                $video_id = "";=>
                 $video_id_arr = getVideoId($video_link);
                 if(sizeof($video_id_arr) == 3) $video_id = $video_id_arr[2];
-                if($video_id != "") 
-                {
-                    
-                ); 
+                if($video_id != "") {
+                    $arrContextOptions=array(
+                    "ssl"=>array(
+                        "verify_peer"=>false,
+                        "verify_peer_name"=>false,
+                    ),
+                );  
                     parse_str(file_get_contents("https://youtube.com/get_video_info?video_id=".$video_id, false, stream_context_create($arrContextOptions)),$info);
                     $statu = json_decode($info['player_response'],true);
+                         echo "<pre>";
+                        print_r($statu['streamingData']);
+                        echo "</pre>";
                     if(!empty($info) && $info['status'] == 'ok'&&isset($statu['streamingData'])) {
 
                         $streams = $statu['streamingData']['formats'];
@@ -157,8 +162,7 @@
                     <?php
                     } else {
                         echo "<h4 class='error'>video không hổ trợ download, vui lòng  chọn link khác!</h4>";
-                    }?>
-        <?php
+                    }
                 } else {
                     echo "<h4 class='error'>Invalid video link!</h4>";
                 }
