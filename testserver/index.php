@@ -1,3 +1,6 @@
+<html>
+    abc
+</html>
 <?php
     if(isset($_GET['testget'])){
         echo '{"message":"ok","method":"get"}';
