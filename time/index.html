@@ -1,18 +1,53 @@
-<?php
-date_default_timezone_set('Asia/Ho_Chi_Minh');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Display Timezone Data</title>
+</head>
+<body>
+  <h1>Timezone Data</h1>
+  <pre id="timezoneData"></pre>
 
-$currentDateTime = new DateTime();
-$currentDateTime->setTimezone(new DateTimeZone('Asia/Ho_Chi_Minh'));
+  <script>
+    // JavaScript code for generating timezone data
+    const timezone = 'Asia/Ho_Chi_Minh';
 
-$data = array(
-    "DOW" => $currentDateTime->format('l'),
-    "day" => $currentDateTime->format('d'),
-    "month" => $currentDateTime->format('m'),
-    "year" => $currentDateTime->format('Y'),
-    "hour" => $currentDateTime->format('H'),
-    "minute" => $currentDateTime->format('i'),
-    "second" => $currentDateTime->format('s')
-);
+    const options = {
+      timeZone: timezone,
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+      weekday: 'long'
+    };
 
-echo json_encode($data);
-?>
+    const formatter = new Intl.DateTimeFormat('en-US', options);
+    const now = new Date();
+
+    const [
+      { value: dayOfWeek },
+      { value: day },
+      { value: month },
+      { value: year },
+      { value: hour },
+      { value: minute },
+      { value: second }
+    ] = formatter.formatToParts(now);
+
+    const data = {
+      "DOW": dayOfWeek,
+      "day": day,
+      "month": month,
+      "year": year,
+      "hour": hour,
+      "minute": minute,
+      "second": second
+    };
+
+    // Display the JSON data in the HTML
+    document.getElementById('timezoneData').innerText = JSON.stringify(data, null, 2);
+  </script>
+</body>
+</html>
