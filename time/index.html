@@ -2,52 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Display Timezone Data</title>
+  <title>Display Time in a Specific Timezone</title>
 </head>
 <body>
-  <h1>Timezone Data</h1>
-  <pre id="timezoneData"></pre>
+  <div id="timezoneData"></div>
 
   <script>
-    // JavaScript code for generating timezone data
+    // Function to format the date into a specific JSON structure
+    function formatTimezoneData(date) {
+      return {"dow": date.toLocaleDateString('en-US', { weekday: 'long' }),"day": date.getDate(),"month": date.getMonth() + 1,"year": date.getFullYear(),"hour": date.getHours(),"minute": date.getMinutes(),"second": date.getSeconds()};
+    }
+
+    // Function to display timezone data in HTML
+    function displayTimezoneData(data) {
+      document.getElementById('timezoneData').innerText = JSON.stringify(data);
+    }
+
+    // Get the current time in the specified timezone
     const timezone = 'Asia/Ho_Chi_Minh';
+    const now = new Date().toLocaleString('en-US', { timeZone: timezone });
+    const currentTime = new Date(now);
 
-    const options = {
-      timeZone: timezone,
-      year: 'numeric',
-      month: 'numeric',
-      day: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric',
-      second: 'numeric',
-      weekday: 'long'
-    };
-
-    const formatter = new Intl.DateTimeFormat('en-US', options);
-    const now = new Date();
-
-    const [
-      { value: dayOfWeek },
-      { value: day },
-      { value: month },
-      { value: year },
-      { value: hour },
-      { value: minute },
-      { value: second }
-    ] = formatter.formatToParts(now);
-
-    const data = {
-      "DOW": dayOfWeek,
-      "day": day,
-      "month": month,
-      "year": year,
-      "hour": hour,
-      "minute": minute,
-      "second": second
-    };
-
-    // Display the JSON data in the HTML
-    document.getElementById('timezoneData').innerText = JSON.stringify(data, null, 2);
+    // Format timezone data and display in HTML
+    const formattedData = formatTimezoneData(currentTime);
+    displayTimezoneData(formattedData);
   </script>
 </body>
 </html>
