@@ -1,24 +1,146 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Thanhphong312</title>
-	<link rel="stylesheet" href="">
-	
+  <meta charset="UTF-8">
+  <title>Lấp lánh hình ngôi sao khi click</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      position: relative;
+    }
+
+    .sky {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: black;
+      z-index: 0;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 2s infinite ease-in-out;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+
+    #char-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .falling-char {
+      position: absolute;
+      top: -50px;
+      font-weight: bold;
+      white-space: nowrap;
+      animation: fall linear;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+
+    /* 🌟 Ngôi sao lấp lánh */
+    .sparkle-star {
+      position: absolute;
+      font-size: 20px;
+      color: white;
+      opacity: 1;
+      pointer-events: none;
+      animation: sparkleStar 0.8s ease-out forwards;
+      z-index: 2;
+      text-shadow: 0 0 5px white, 0 0 10px pink;
+    }
+
+    @keyframes sparkleStar {
+      0% {
+        transform: scale(0.5) rotate(0deg);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.5) rotate(180deg);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(0) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
 </head>
-	<style>
-		h1 a{
-			text-align: center; 
-			color: red;
-			text-decoration: none;
-		}
-		h3, h1{
-			text-align: center;
-		}
-	</style>
 <body>
-	<h1><a href="https://www.facebook.com/thanhphong031201">ThanhPhong312</a></h1>
-	<h3>Hello world</h3>
+
+<div class="sky" id="sky"></div>
+<div id="char-container"></div>
+
+<script>
+  // 🌌 Tạo bầu trời sao
+  const sky = document.getElementById('sky');
+  const numStars = 300;
+  for (let i = 0; i < numStars; i++) {
+    const star = document.createElement('div');
+    star.classList.add('star');
+    star.style.top = `${Math.random() * 100}vh`;
+    star.style.left = `${Math.random() * 100}vw`;
+    star.style.animationDuration = `${1 + Math.random() * 2}s`;
+    star.style.opacity = Math.random();
+    sky.appendChild(star);
+  }
+
+  // 💖 Tạo chữ rơi
+  const charContainer = document.getElementById('char-container');
+  const chars = ['♥', 'Mỹ Linh Xinh Đẹp', '💖', 'LOVE', '🌸'];
+  const colors = ['#FF69B4', '#FFB6C1'];
+  const dropInterval = 90;
+
+  function createFallingChar() {
+    const char = document.createElement('div');
+    char.classList.add('falling-char');
+    char.innerText = chars[Math.floor(Math.random() * chars.length)];
+    char.style.color = colors[Math.floor(Math.random() * colors.length)];
+    char.style.left = `${Math.random() * 100}vw`;
+    char.style.fontSize = `${16 + Math.random() * 24}px`;
+    const duration = 3 + Math.random() * 3;
+    char.style.animationDuration = `${duration}s`;
+    charContainer.appendChild(char);
+    setTimeout(() => char.remove(), duration * 1000);
+  }
+
+  setInterval(createFallingChar, dropInterval);
+
+  // ✨ Click => hiện ngôi sao lấp lánh tại vị trí chuột
+  document.addEventListener('click', (e) => {
+    const sparkle = document.createElement('div');
+    sparkle.classList.add('sparkle-star');
+    sparkle.innerText = '★'; // hình ngôi sao
+    sparkle.style.left = `${e.clientX - 10}px`;
+    sparkle.style.top = `${e.clientY - 10}px`;
+    document.body.appendChild(sparkle);
+    setTimeout(() => sparkle.remove(), 800);
+  });
+</script>
+
 </body>
 </html>
