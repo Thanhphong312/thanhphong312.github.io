@@ -1,151 +1,790 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi" data-bs-theme="dark">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Love Day</title>
-  <style>
-    html, body {
-      height: 100%;
-      width: 100%;
-      margin: 0;
-      padding: 0;
-      background: black;
-      overflow: hidden;
-      font-family: Arial, sans-serif;
-      position: relative;
-    }
-
-    .sky {
-      position: absolute;
-      width: 100%;
-      height: 100dvh; /* Đảm bảo full màn hình trên mobile */
-      background: black;
-      z-index: 0;
-      top: 0;
-      left: 0;
-    }
-
-    .star {
-      position: absolute;
-      width: 2px;
-      height: 2px;
-      background: white;
-      border-radius: 50%;
-      animation: twinkle 2s infinite ease-in-out;
-    }
-
-    @keyframes twinkle {
-      0%, 100% { opacity: 0.3; }
-      50% { opacity: 1; }
-    }
-
-    #char-container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    .falling-char {
-      position: absolute;
-      top: -50px;
-      font-weight: bold;
-      white-space: nowrap;
-      animation: fall linear;
-      user-select: none;
-      pointer-events: none;
-    }
-
-    @keyframes fall {
-      to {
-        transform: translateY(110vh);
-        opacity: 0;
-      }
-    }
-
-    /* 🌟 Ngôi sao lấp lánh */
-    .sparkle-star {
-      position: absolute;
-      font-size: 20px;
-      color: white;
-      opacity: 1;
-      pointer-events: none;
-      animation: sparkleStar 0.8s ease-out forwards;
-      z-index: 2;
-      text-shadow: 0 0 5px white, 0 0 10px pink;
-    }
-
-    @keyframes sparkleStar {
-      0% {
-        transform: scale(0.5) rotate(0deg);
-        opacity: 1;
-      }
-      50% {
-        transform: scale(1.5) rotate(180deg);
-        opacity: 1;
-      }
-      100% {
-        transform: scale(0) rotate(360deg);
-        opacity: 0;
-      }
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Labtech88 - Đội ngũ phát triển</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top glass-nav">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">Labtech<span class="text-accent">88</span></a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto gap-1">
+          <li class="nav-item"><a class="nav-link" href="#home">Trang chủ</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">Giới thiệu</a></li>
+          <li class="nav-item"><a class="nav-link" href="#team">Đội ngũ</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Công nghệ</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Liên hệ</a></li>
+        </ul>
+        <button class="btn btn-sm ms-3 theme-toggle" id="themeToggle" title="Chuyển giao diện">
+          <i class="bi bi-moon-fill"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
 
-<div class="sky" id="sky"></div>
-<div id="char-container"></div>
-
-<script>
-  // 🌌 Tạo bầu trời sao
-  const sky = document.getElementById('sky');
-  const numStars = 300;
-  for (let i = 0; i < numStars; i++) {
-    const star = document.createElement('div');
-    star.classList.add('star');
-    star.style.top = `${Math.random() * 100}vh`;
-    star.style.left = `${Math.random() * 100}vw`;
-    star.style.animationDuration = `${1 + Math.random() * 2}s`;
-    star.style.opacity = Math.random();
-    sky.appendChild(star);
+  <!-- Hero Section -->
+  <section id="home" class="hero-section d-flex align-items-center">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-7">
+          <span class="badge bg-accent-subtle text-accent mb-3 px-3 py-2 rounded-pill">
+            <i class="bi bi-circle-fill pulse me-1"></i> Sẵn sàng nhận việc
+          </span>
+          <h1 class="display-3 fw-800 mb-3">
+            Xây dựng web,<br />
+            <span class="text-gradient">từng dòng code.</span>
+          </h1>
+          <p class="lead text-secondary mb-4" style="max-width: 540px;">
+            Chúng tôi là đội ngũ 3 lập trình viên Full-Stack đến từ <strong>Labtech88.com</strong>,
+            chuyên phát triển các sản phẩm web hiện đại, nhanh chóng và chất lượng cao
+            bằng công nghệ tiên tiến nhất.
+          </p>
+          <div class="d-flex gap-3 flex-wrap">
+            <a href="#team" class="btn btn-accent btn-lg px-4">
+              <i class="bi bi-people me-2"></i>Gặp đội ngũ
+            </a>
+            <a href="#contact" class="btn btn-outline-secondary btn-lg px-4">
+              <i class="bi bi-envelope me-2"></i>Liên hệ
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-5 d-none d-lg-block text-center">
+          <div class="hero-graphic">
+            <div class="code-block">
+              <div class="code-header">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <pre><code><span class="code-keyword">const</span> <span class="code-var">labtech88</span> = {
+  <span class="code-prop">team</span>: <span class="code-num">3</span>,
+  <span class="code-prop">passion</span>: <span class="code-str">"∞"</span>,
+  <span class="code-prop">stack</span>: [
+    <span class="code-str">"Laravel"</span>,
+    <span class="code-str">"Node.js"</span>,
+    <span class="code-str">"React"</span>,
+    <span class="code-str">"Next.js"</span>
+  ],
+  <span class="code-func">build</span>() {
+    <span class="code-keyword">return</span> <span class="code-str">"amazing products"</span>;
   }
+};</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  // 💖 Tạo chữ rơi
-  const charContainer = document.getElementById('char-container');
-  const chars = ['♥', 'Mỹ Linh Xinh Đẹp', '💖', 'LOVE', '🌸'];
-  const colors = ['#FF69B4', '#FFB6C1'];
-  const dropInterval = 90;
+  <!-- About Section -->
+  <section id="about" class="py-section">
+    <div class="container">
+      <div class="text-center mb-5">
+        <span class="section-label">GIỚI THIỆU</span>
+        <h2 class="display-5 fw-bold mt-2">Chúng tôi là ai</h2>
+        <p class="text-secondary mx-auto" style="max-width: 600px;">
+          Đội ngũ lập trình viên Full-Stack với kinh nghiệm sâu rộng,
+          từ thiết kế cơ sở dữ liệu đến giao diện người dùng hoàn hảo.
+        </p>
+      </div>
+      <div class="row g-4 justify-content-center">
+        <div class="col-md-4">
+          <div class="stat-card text-center p-4">
+            <div class="stat-icon mb-3"><i class="bi bi-code-slash"></i></div>
+            <h3 class="fw-bold">10+</h3>
+            <p class="text-secondary mb-0">Năm kinh nghiệm tổng cộng</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="stat-card text-center p-4">
+            <div class="stat-icon mb-3"><i class="bi bi-rocket-takeoff"></i></div>
+            <h3 class="fw-bold">50+</h3>
+            <p class="text-secondary mb-0">Dự án đã hoàn thành</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="stat-card text-center p-4">
+            <div class="stat-icon mb-3"><i class="bi bi-globe2"></i></div>
+            <h3 class="fw-bold">2</h3>
+            <p class="text-secondary mb-0">Sản phẩm đang vận hành</p>
+          </div>
+        </div>
+      </div>
 
-  function createFallingChar() {
-    const char = document.createElement('div');
-    char.classList.add('falling-char');
-    char.innerText = chars[Math.floor(Math.random() * chars.length)];
-    char.style.color = colors[Math.floor(Math.random() * colors.length)];
-    char.style.left = `${Math.random() * 100}vw`;
-    char.style.fontSize = `${16 + Math.random() * 24}px`;
-    const duration = 3 + Math.random() * 3;
-    char.style.animationDuration = `${duration}s`;
-    charContainer.appendChild(char);
-    setTimeout(() => char.remove(), duration * 1000);
-  }
+      <!-- Products -->
+      <div class="row g-4 justify-content-center mt-4">
+        <div class="col-md-6">
+          <a href="https://pressify.us/" target="_blank" class="product-card d-block p-4 text-decoration-none">
+            <div class="d-flex align-items-center gap-3">
+              <div class="product-icon">
+                <i class="bi bi-printer"></i>
+              </div>
+              <div>
+                <h5 class="fw-bold mb-1">Pressify.us</h5>
+                <p class="text-secondary mb-0 small">Nền tảng Print-on-Demand chuyên nghiệp</p>
+              </div>
+              <i class="bi bi-arrow-up-right ms-auto fs-4 text-accent"></i>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-6">
+          <a href="https://ai.supover.com/" target="_blank" class="product-card d-block p-4 text-decoration-none">
+            <div class="d-flex align-items-center gap-3">
+              <div class="product-icon">
+                <i class="bi bi-robot"></i>
+              </div>
+              <div>
+                <h5 class="fw-bold mb-1">AI Supover</h5>
+                <p class="text-secondary mb-0 small">Giải pháp AI thông minh</p>
+              </div>
+              <i class="bi bi-arrow-up-right ms-auto fs-4 text-accent"></i>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  setInterval(createFallingChar, dropInterval);
+  <!-- Team Section -->
+  <section id="team" class="py-section bg-subtle">
+    <div class="container">
+      <div class="text-center mb-5">
+        <span class="section-label">ĐỘI NGŨ</span>
+        <h2 class="display-5 fw-bold mt-2">Gặp gỡ đội ngũ phát triển</h2>
+        <p class="text-secondary mx-auto" style="max-width: 600px;">
+          Ba con người, một đam mê chung — xây dựng phần mềm tạo nên sự khác biệt.
+        </p>
+      </div>
 
-  // ✨ Click => hiện ngôi sao lấp lánh tại vị trí chuột
-  document.addEventListener('click', (e) => {
-    const sparkle = document.createElement('div');
-    sparkle.classList.add('sparkle-star');
-    sparkle.innerText = '★'; // hình ngôi sao
-    sparkle.style.left = `${e.clientX - 10}px`;
-    sparkle.style.top = `${e.clientY - 10}px`;
-    document.body.appendChild(sparkle);
-    setTimeout(() => sparkle.remove(), 800);
-  });
-</script>
+      <!-- Nguyễn Trí Quãng -->
+      <div class="profile-card mb-5 fade-in">
+        <div class="row g-0 align-items-center">
+          <div class="col-md-4 text-center p-4">
+            <div class="avatar-wrapper mx-auto">
+              <img src="https://api.dicebear.com/9.x/notionists/svg?seed=Quang&backgroundColor=b6e3f4" alt="Nguyễn Trí Quãng" class="avatar-img" />
+            </div>
+            <h4 class="fw-bold mt-3 mb-1">Nguyễn Trí Quãng</h4>
+            <span class="badge bg-accent-subtle text-accent rounded-pill">Fullstack Developer</span>
+            <div class="social-links mt-3">
+              <a href="https://github.com/NgTrQuang" target="_blank" class="me-2"><i class="bi bi-github"></i></a>
+              <a href="https://linkedin.com/in/NgTrQuang" target="_blank" class="me-2"><i class="bi bi-linkedin"></i></a>
+              <a href="https://www.facebook.com/it.ngtrquang" target="_blank"><i class="bi bi-facebook"></i></a>
+            </div>
+          </div>
+          <div class="col-md-8 p-4 p-md-5">
+            <!-- Giới thiệu -->
+            <h5 class="fw-semibold mb-3"><i class="bi bi-person-workspace me-2 text-accent"></i>Giới thiệu</h5>
+            <p class="text-secondary">
+              Là lập trình viên <strong>Full-Stack với hơn 5 năm kinh nghiệm</strong> xây dựng
+              các ứng dụng web hiện đại. Chuyên về <strong>React, TypeScript và Node.js</strong>,
+              với niềm đam mê tạo ra những trải nghiệm số nhanh, dễ tiếp cận và được thiết kế đẹp mắt.
+            </p>
+            <p class="text-secondary">
+              Khi không lập trình, bạn sẽ thấy tôi khám phá các dự án mã nguồn mở, viết bài blog kỹ thuật,
+              hoặc thử nghiệm với các công nghệ mới. Tôi tin vào code sạch, kiến trúc chu đáo và học hỏi không ngừng.
+            </p>
 
+            <!-- Kỹ năng chính -->
+            <h6 class="fw-semibold mt-4 mb-2"><i class="bi bi-stars me-2 text-accent"></i>Kỹ năng & Công nghệ</h6>
+            <div class="tech-tags mb-3">
+              <span class="tech-tag">TypeScript</span>
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">Next.js</span>
+              <span class="tech-tag">Node.js</span>
+              <span class="tech-tag">TailwindCSS</span>
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">Java</span>
+              <span class="tech-tag">Spring Boot</span>
+              <span class="tech-tag">PostgreSQL</span>
+              <span class="tech-tag">MySQL</span>
+              <span class="tech-tag">MongoDB</span>
+              <span class="tech-tag">Oracle</span>
+              <span class="tech-tag">Git</span>
+              <span class="tech-tag">Redis</span>
+              <span class="tech-tag">EMQX</span>
+              <span class="tech-tag">C/C++</span>
+            </div>
+
+            <!-- Công nghệ sử dụng -->
+            <h6 class="fw-semibold mt-4 mb-2"><i class="bi bi-cpu me-2 text-accent"></i>Công nghệ sử dụng</h6>
+            <div class="tech-tags-mini mb-3">
+              <span class="tech-tag-mini">JavaScript</span>
+              <span class="tech-tag-mini">TypeScript</span>
+              <span class="tech-tag-mini">React</span>
+              <span class="tech-tag-mini">Next.js</span>
+              <span class="tech-tag-mini">Node.js</span>
+              <span class="tech-tag-mini">TailwindCSS</span>
+              <span class="tech-tag-mini">PostgreSQL</span>
+              <span class="tech-tag-mini">MongoDB</span>
+              <span class="tech-tag-mini">Redis</span>
+              <span class="tech-tag-mini">Docker</span>
+              <span class="tech-tag-mini">AWS</span>
+              <span class="tech-tag-mini">Vercel</span>
+              <span class="tech-tag-mini">Render</span>
+              <span class="tech-tag-mini">Git</span>
+              <span class="tech-tag-mini">GraphQL</span>
+              <span class="tech-tag-mini">REST APIs</span>
+              <span class="tech-tag-mini">Figma</span>
+              <span class="tech-tag-mini">Spring Boot</span>
+              <span class="tech-tag-mini">Java</span>
+              <span class="tech-tag-mini">Python</span>
+              <span class="tech-tag-mini">Oracle</span>
+              <span class="tech-tag-mini">C/C++</span>
+              <span class="tech-tag-mini">EMQX</span>
+              <span class="tech-tag-mini">MySQL</span>
+            </div>
+
+            <!-- Kinh nghiệm làm việc -->
+            <h6 class="fw-semibold mt-4 mb-3"><i class="bi bi-briefcase me-2 text-accent"></i>Kinh nghiệm</h6>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                  <div class="d-flex justify-content-between align-items-start flex-wrap gap-1">
+                    <div>
+                      <h6 class="fw-bold mb-0">Kỹ sư Full-Stack & Kiểm thử</h6>
+                      <span class="text-accent small fw-medium">HPK Viet Nam Co., Jsc.</span>
+                    </div>
+                    <span class="badge bg-accent-subtle text-accent rounded-pill small">2024 — Hiện tại</span>
+                  </div>
+                  <p class="text-secondary small mt-2 mb-0">
+                    Lập trình viên full-stack chuyên về công nghệ web hiện đại. Tạo ra những trải nghiệm số nhanh,
+                    dễ tiếp cận và đẹp mắt. Dự án IOT được tích hợp để điều khiển từ xa, thuận tiện dù ở mọi nơi.
+                  </p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                  <div class="d-flex justify-content-between align-items-start flex-wrap gap-1">
+                    <div>
+                      <h6 class="fw-bold mb-0">Lập trình viên Full-Stack</h6>
+                      <span class="text-accent small fw-medium">Freelancer</span>
+                    </div>
+                    <span class="badge bg-accent-subtle text-accent rounded-pill small">2024</span>
+                  </div>
+                  <p class="text-secondary small mt-2 mb-0">
+                    Xây dựng và phát hành 2 sản phẩm từ đầu sử dụng React, TailwindCSS, Node.js và MongoDB.
+                    Triển khai CI/CD và kiểm thử tự động.
+                  </p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                  <div class="d-flex justify-content-between align-items-start flex-wrap gap-1">
+                    <div>
+                      <h6 class="fw-bold mb-0">Cộng tác viên</h6>
+                      <span class="text-accent small fw-medium">Besoft Co.</span>
+                    </div>
+                    <span class="badge bg-accent-subtle text-accent rounded-pill small">2023 — 2024</span>
+                  </div>
+                  <p class="text-secondary small mt-2 mb-0">
+                    Scan và chỉnh sửa tài liệu theo yêu cầu của dự án, giúp hỗ trợ tổng hợp các tài liệu
+                    liên quan đến dự án.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trần Đình Khôi -->
+      <div class="profile-card mb-5 fade-in">
+        <div class="row g-0 align-items-center flex-md-row-reverse">
+          <div class="col-md-4 text-center p-4">
+            <div class="avatar-wrapper mx-auto">
+              <img src="https://api.dicebear.com/9.x/notionists/svg?seed=Khoi&backgroundColor=c0aede" alt="Trần Đình Khôi" class="avatar-img" />
+            </div>
+            <h4 class="fw-bold mt-3 mb-1">Trần Đình Khôi</h4>
+            <span class="badge bg-accent-subtle text-accent rounded-pill">Fullstack Developer</span>
+            <div class="social-links mt-3">
+              <a href="#" class="me-2"><i class="bi bi-github"></i></a>
+              <a href="#" class="me-2"><i class="bi bi-linkedin"></i></a>
+              <a href="#"><i class="bi bi-facebook"></i></a>
+            </div>
+          </div>
+          <div class="col-md-8 p-4 p-md-5">
+            <h5 class="fw-semibold mb-3"><i class="bi bi-server me-2 text-accent"></i>Kinh nghiệm & Chuyên môn</h5>
+            <p class="text-secondary">
+              Là lập trình viên <strong>Fullstack</strong> giàu kinh nghiệm, Khôi chuyên về thiết kế
+              và phát triển các ứng dụng web quy mô lớn. Anh có khả năng làm việc với nhiều
+              công nghệ khác nhau, từ framework front-end hiện đại đến hệ thống back-end phức tạp.
+            </p>
+            <p class="text-secondary">
+              Khôi luôn đặt chất lượng code lên hàng đầu, với phong cách lập trình sạch sẽ,
+              dễ bảo trì và có khả năng mở rộng. Anh đóng vai trò quan trọng trong việc
+              xây dựng kiến trúc hệ thống và đảm bảo hiệu suất ứng dụng.
+            </p>
+            <div class="tech-tags mt-3">
+              <span class="tech-tag">Laravel</span>
+              <span class="tech-tag">Node.js</span>
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">Next.js</span>
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">MySQL</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Huỳnh Thanh Phong -->
+      <div class="profile-card mb-5 fade-in">
+        <div class="row g-0 align-items-center">
+          <div class="col-md-4 text-center p-4">
+            <div class="avatar-wrapper mx-auto">
+              <img src="https://api.dicebear.com/9.x/notionists/svg?seed=Phong&backgroundColor=ffd5dc" alt="Huỳnh Thanh Phong" class="avatar-img" />
+            </div>
+            <h4 class="fw-bold mt-3 mb-1">Huỳnh Thanh Phong</h4>
+            <span class="badge bg-accent-subtle text-accent rounded-pill">Fullstack Developer</span>
+            <div class="social-links mt-3">
+              <a href="https://github.com/Thanhphong312" target="_blank" class="me-2"><i class="bi bi-github"></i></a>
+              <a href="https://www.linkedin.com/in/thanhphong312" target="_blank" class="me-2"><i class="bi bi-linkedin"></i></a>
+              <a href="https://www.facebook.com/phong.thanh.373877/" target="_blank"><i class="bi bi-facebook"></i></a>
+            </div>
+          </div>
+          <div class="col-md-8 p-4 p-md-5">
+            <!-- Giới thiệu -->
+            <h5 class="fw-semibold mb-3"><i class="bi bi-layers me-2 text-accent"></i>Giới thiệu</h5>
+            <p class="text-secondary">
+              Với <strong>3+ năm kinh nghiệm</strong> lập trình chuyên sâu về Print-on-Demand (POD),
+              Phong là chuyên gia trong việc quản lý vận hành website và sở hữu đầy đủ kỹ năng
+              <strong>DevOps</strong> để vận hành một hệ thống website hoàn chỉnh từ A đến Z.
+            </p>
+            <p class="text-secondary">
+              Anh đã xây dựng và vận hành thành công các sản phẩm như
+              <a href="https://pressify.us/" target="_blank">Pressify.us</a> và
+              <a href="https://ai.supover.com/" target="_blank">AI Supover</a>.
+              Tốt nghiệp <strong>Đại học Cần Thơ</strong>, hiện đang làm việc tại Đà Nẵng.
+            </p>
+
+            <!-- Kỹ năng chính -->
+            <h6 class="fw-semibold mt-4 mb-2"><i class="bi bi-stars me-2 text-accent"></i>Kỹ năng & Công nghệ</h6>
+            <div class="tech-tags mb-3">
+              <span class="tech-tag">Laravel</span>
+              <span class="tech-tag">Node.js</span>
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">Next.js</span>
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">MySQL</span>
+              <span class="tech-tag">MongoDB</span>
+              <span class="tech-tag">Firebase</span>
+              <span class="tech-tag">DevOps</span>
+            </div>
+
+            <!-- Công nghệ sử dụng -->
+            <h6 class="fw-semibold mt-4 mb-2"><i class="bi bi-cpu me-2 text-accent"></i>Công nghệ sử dụng</h6>
+            <div class="tech-tags-mini mb-3">
+              <span class="tech-tag-mini">JavaScript</span>
+              <span class="tech-tag-mini">PHP</span>
+              <span class="tech-tag-mini">Laravel</span>
+              <span class="tech-tag-mini">Node.js</span>
+              <span class="tech-tag-mini">Express</span>
+              <span class="tech-tag-mini">Python</span>
+              <span class="tech-tag-mini">React</span>
+              <span class="tech-tag-mini">Next.js</span>
+              <span class="tech-tag-mini">Bootstrap</span>
+              <span class="tech-tag-mini">TailwindCSS</span>
+              <span class="tech-tag-mini">MySQL</span>
+              <span class="tech-tag-mini">MongoDB</span>
+              <span class="tech-tag-mini">Firebase</span>
+              <span class="tech-tag-mini">Redis</span>
+              <span class="tech-tag-mini">Docker</span>
+              <span class="tech-tag-mini">Nginx</span>
+              <span class="tech-tag-mini">Linux</span>
+              <span class="tech-tag-mini">Git</span>
+              <span class="tech-tag-mini">CI/CD</span>
+              <span class="tech-tag-mini">REST APIs</span>
+              <span class="tech-tag-mini">Cloudflare</span>
+              <span class="tech-tag-mini">VPS</span>
+            </div>
+
+            <!-- Work Info -->
+            <div class="work-info mt-3 mb-3">
+              <div class="d-flex align-items-start gap-2 mb-2">
+                <i class="bi bi-mortarboard text-accent mt-1"></i>
+                <span class="small">Đại học Cần Thơ</span>
+              </div>
+            </div>
+
+            <!-- Kinh nghiệm làm việc -->
+            <h6 class="fw-semibold mt-4 mb-3"><i class="bi bi-briefcase me-2 text-accent"></i>Kinh nghiệm</h6>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                  <div class="d-flex justify-content-between align-items-start flex-wrap gap-1">
+                    <div>
+                      <h6 class="fw-bold mb-0">Fullstack Developer & DevOps</h6>
+                      <span class="text-accent small fw-medium">Pressify VN</span>
+                    </div>
+                    <span class="badge bg-accent-subtle text-accent rounded-pill small">2024 — Hiện tại</span>
+                  </div>
+                  <p class="text-secondary small mt-2 mb-0">
+                    Phát triển và vận hành nền tảng <a href="https://pressify.us/" target="_blank">Pressify.us</a> —
+                    hệ thống Print-on-Demand chuyên nghiệp. Xây dựng backend với Laravel & Node.js,
+                    quản lý hạ tầng server, CI/CD và đảm bảo hệ thống hoạt động ổn định 24/7.
+                  </p>
+                  <div class="mt-2">
+                    <span class="text-secondary small"><i class="bi bi-geo-alt me-1"></i>12 Nại Nam, Hòa Cường, Hải Châu, Đà Nẵng</span>
+                  </div>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                  <div class="d-flex justify-content-between align-items-start flex-wrap gap-1">
+                    <div>
+                      <h6 class="fw-bold mb-0">Fullstack Developer</h6>
+                      <span class="text-accent small fw-medium">Dragon Media</span>
+                    </div>
+                    <span class="badge bg-accent-subtle text-accent rounded-pill small">2024 — Hiện tại</span>
+                  </div>
+                  <p class="text-secondary small mt-2 mb-0">
+                    Phát triển giải pháp <a href="https://ai.supover.com/" target="_blank">AI Supover</a> và
+                    các công cụ hỗ trợ vận hành. Xây dựng hệ thống web với React, Next.js, Python
+                    và quản lý cơ sở dữ liệu MongoDB, MySQL, Firebase.
+                  </p>
+                  <div class="mt-2">
+                    <span class="text-secondary small"><i class="bi bi-geo-alt me-1"></i>115 Nguyễn Sinh Sắc, Hoà Minh, Liên Chiểu, Đà Nẵng</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="py-section">
+    <div class="container">
+      <div class="text-center mb-5">
+        <span class="section-label">CÔNG NGHỆ</span>
+        <h2 class="display-5 fw-bold mt-2">Công nghệ chúng tôi sử dụng</h2>
+      </div>
+      <!-- Languages -->
+      <h6 class="text-center text-secondary fw-semibold mb-3"><i class="bi bi-code-slash me-2"></i>Ngôn ngữ lập trình</h6>
+      <div class="row g-3 justify-content-center mb-5">
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+          <div class="skill-card text-center p-3">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" width="48" height="48" />
+            <p class="mt-2 mb-0 small fw-medium">JavaScript</p>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+          <div class="skill-card text-center p-3">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" width="48" height="48" />
+            <p class="mt-2 mb-0 small fw-medium">TypeScript</p>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+          <div class="skill-card text-center p-3">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" width="48" height="48" />
+            <p class="mt-2 mb-0 small fw-medium">PHP</p>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+          <div class="skill-card text-center p-3">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" width="48" height="48" />
+            <p class="mt-2 mb-0 small fw-medium">Python</p>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+          <div class="skill-card text-center p-3">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" width="48" height="48" />
+            <p class="mt-2 mb-0 small fw-medium">Java</p>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+          <div class="skill-card text-center p-3">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C/C++" width="48" height="48" />
+            <p class="mt-2 mb-0 small fw-medium">C/C++</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Frontend -->
+      <h6 class="text-center text-secondary fw-semibold mb-3"><i class="bi bi-window-stack me-2"></i>Frontend</h6>
+      <div class="row g-3 justify-content-center mb-5">
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+          <div class="skill-card text-center p-3">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" width="48" height="48" />
+            <p class="mt-2 mb-0 small fw-medium">React</p>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+          <div class="skill-card text-center p-3">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js" width="48" height="48" class="icon-invert" />
+            <p class="mt-2 mb-0 small fw-medium">Next.js</p>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+          <div class="skill-card text-center p-3">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="TailwindCSS" width="48" height="48" />
+            <p class="mt-2 mb-0 small fw-medium">TailwindCSS</p>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+          <div class="skill-card text-center p-3">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap" width="48" height="48" />
+            <p class="mt-2 mb-0 small fw-medium">Bootstrap</p>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+          <div class="skill-card text-center p-3">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" width="48" height="48" />
+            <p class="mt-2 mb-0 small fw-medium">Figma</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Backend -->
+      <h6 class="text-center text-secondary fw-semibold mb-3"><i class="bi bi-server me-2"></i>Backend</h6>
+      <div class="row g-3 justify-content-center mb-5">
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+          <div class="skill-card text-center p-3">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" width="48" height="48" />
+            <p class="mt-2 mb-0 small fw-medium">Node.js</p>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+          <div class="skill-card text-center p-3">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express" width="48" height="48" class="icon-invert" />
+            <p class="mt-2 mb-0 small fw-medium">Express</p>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+          <div class="skill-card text-center p-3">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg" alt="Laravel" width="48" height="48" />
+            <p class="mt-2 mb-0 small fw-medium">Laravel</p>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+          <div class="skill-card text-center p-3">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring Boot" width="48" height="48" />
+            <p class="mt-2 mb-0 small fw-medium">Spring Boot</p>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+          <div class="skill-card text-center p-3">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg" alt="GraphQL" width="48" height="48" />
+            <p class="mt-2 mb-0 small fw-medium">GraphQL</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Database -->
+      <h6 class="text-center text-secondary fw-semibold mb-3"><i class="bi bi-database me-2"></i>Cơ sở dữ liệu</h6>
+      <div class="row g-3 justify-content-center mb-5">
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+          <div class="skill-card text-center p-3">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" width="48" height="48" />
+            <p class="mt-2 mb-0 small fw-medium">MySQL</p>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+          <div class="skill-card text-center p-3">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" width="48" height="48" />
+            <p class="mt-2 mb-0 small fw-medium">PostgreSQL</p>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+          <div class="skill-card text-center p-3">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" width="48" height="48" />
+            <p class="mt-2 mb-0 small fw-medium">MongoDB</p>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+          <div class="skill-card text-center p-3">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase" width="48" height="48" />
+            <p class="mt-2 mb-0 small fw-medium">Firebase</p>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+          <div class="skill-card text-center p-3">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" alt="Redis" width="48" height="48" />
+            <p class="mt-2 mb-0 small fw-medium">Redis</p>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+          <div class="skill-card text-center p-3">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" alt="Oracle" width="48" height="48" />
+            <p class="mt-2 mb-0 small fw-medium">Oracle</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- DevOps & Tools -->
+      <h6 class="text-center text-secondary fw-semibold mb-3"><i class="bi bi-gear me-2"></i>DevOps & Công cụ</h6>
+      <div class="row g-3 justify-content-center">
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+          <div class="skill-card text-center p-3">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" width="48" height="48" />
+            <p class="mt-2 mb-0 small fw-medium">Docker</p>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+          <div class="skill-card text-center p-3">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" alt="Nginx" width="48" height="48" />
+            <p class="mt-2 mb-0 small fw-medium">Nginx</p>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+          <div class="skill-card text-center p-3">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux" width="48" height="48" />
+            <p class="mt-2 mb-0 small fw-medium">Linux</p>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+          <div class="skill-card text-center p-3">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" alt="AWS" width="48" height="48" class="icon-invert" />
+            <p class="mt-2 mb-0 small fw-medium">AWS</p>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+          <div class="skill-card text-center p-3">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg" alt="Vercel" width="48" height="48" class="icon-invert" />
+            <p class="mt-2 mb-0 small fw-medium">Vercel</p>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+          <div class="skill-card text-center p-3">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cloudflare/cloudflare-original.svg" alt="Cloudflare" width="48" height="48" />
+            <p class="mt-2 mb-0 small fw-medium">Cloudflare</p>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+          <div class="skill-card text-center p-3">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" width="48" height="48" />
+            <p class="mt-2 mb-0 small fw-medium">Git</p>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+          <div class="skill-card text-center p-3">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" width="48" height="48" class="icon-invert" />
+            <p class="mt-2 mb-0 small fw-medium">GitHub</p>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+          <div class="skill-card text-center p-3">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/digitalocean/digitalocean-original.svg" alt="DigitalOcean" width="48" height="48" />
+            <p class="mt-2 mb-0 small fw-medium">DigitalOcean</p>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+          <div class="skill-card text-center p-3">
+            <img src="https://www.vultr.com/apple-touch-icon.png?v=1" alt="Vultr" width="48" height="48" style="border-radius:10px" />
+            <p class="mt-2 mb-0 small fw-medium">Vultr</p>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+          <div class="skill-card text-center p-3">
+            <img src="https://viettel-idc.com.vn/uploads/logo-idc-2.png" alt="Viettel IDC" width="48" height="48" style="object-fit:contain" />
+            <p class="mt-2 mb-0 small fw-medium">Viettel IDC</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-section bg-subtle">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="text-center mb-5">
+            <span class="section-label">LIÊN HỆ</span>
+            <h2 class="display-5 fw-bold mt-2">Kết nối với chúng tôi</h2>
+            <p class="text-secondary">
+              Bạn có dự án cần phát triển? Hãy liên hệ để cùng xây dựng sản phẩm tuyệt vời.
+            </p>
+          </div>
+
+          <!-- Office Locations -->
+          <div class="row g-4 mb-5">
+            <div class="col-md-6">
+              <div class="location-card p-4">
+                <div class="d-flex align-items-center gap-2 mb-3">
+                  <i class="bi bi-building text-accent fs-4"></i>
+                  <h5 class="fw-bold mb-0">Pressify VN</h5>
+                </div>
+                <p class="text-secondary small mb-0">
+                  <i class="bi bi-geo-alt me-1"></i>12 Nại Nam, Hòa Cường, Hải Châu, Đà Nẵng, Vietnam
+                </p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="location-card p-4">
+                <div class="d-flex align-items-center gap-2 mb-3">
+                  <i class="bi bi-building text-accent fs-4"></i>
+                  <h5 class="fw-bold mb-0">Dragon Media</h5>
+                </div>
+                <p class="text-secondary small mb-0">
+                  <i class="bi bi-geo-alt me-1"></i>115 Nguyễn Sinh Sắc, Hoà Minh, Liên Chiểu, Đà Nẵng
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <form class="contact-form" onsubmit="return false;">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label small fw-medium">Họ tên</label>
+                <input type="text" class="form-control form-control-lg" placeholder="Nhập họ tên" />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-medium">Email</label>
+                <input type="email" class="form-control form-control-lg" placeholder="email@example.com" />
+              </div>
+              <div class="col-12">
+                <label class="form-label small fw-medium">Tin nhắn</label>
+                <textarea class="form-control form-control-lg" rows="5" placeholder="Mô tả dự án của bạn..."></textarea>
+              </div>
+              <div class="col-12 text-center">
+                <button type="submit" class="btn btn-accent btn-lg px-5 mt-2">
+                  <i class="bi bi-send me-2"></i>Gửi tin nhắn
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-4 border-top">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6 text-center text-md-start">
+          <p class="mb-0 text-secondary small">&copy; 2026 Labtech<span class="text-accent">88</span>.com &mdash; Đội ngũ phát triển tại Việt Nam.</p>
+        </div>
+        <div class="col-md-6 text-center text-md-end mt-2 mt-md-0">
+          <a href="https://labtech88.com" target="_blank" class="text-secondary me-3"><i class="bi bi-globe2 fs-5"></i></a>
+          <a href="https://pressify.us/" target="_blank" class="text-secondary me-3"><i class="bi bi-box-arrow-up-right fs-5"></i></a>
+          <a href="#" class="text-secondary"><i class="bi bi-github fs-5"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
 </body>
+
 </html>
