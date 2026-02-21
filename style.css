@@ -513,6 +513,18 @@ a:hover {
   border: 1px solid var(--card-border);
 }
 
+/* ===== Mini Stat Cards ===== */
+.stat-card-mini {
+  background: var(--bg-subtle);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  transition: all 0.2s;
+}
+
+.stat-card-mini:hover {
+  border-color: var(--accent);
+}
+
 /* ===== Footer ===== */
 footer {
   border-color: var(--card-border) !important;
